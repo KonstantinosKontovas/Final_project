@@ -1,0 +1,21 @@
+Cashflow control : 
+
+First thought : Ever grabbed a coffee from a bakery , or a coffee shop ? So did I ! 
+But how often ?
+
+
+WHAT THIS IS ALL ABOUT :
+ 
+The whole idea is to get some real data and observe individual behaviour when it comes to 
+regular expenses.
+
+
+The whole idea in general is to give an overview of:
+
+- how much a person monthly / yearly spends.
+- how many of these expenses can be avoided (if any)
+- after identifying the mandatory costs, it's time to reduce these extras.
+- from the costs we reduced we can now talk about savings for the future.
+
+And with this in mind we can also may be able to convince a bank (when it comes to a loan for a house)
+and maybe make things easier
