@@ -78,7 +78,7 @@ df_selection_rev = lean_exp.query(
 
 st.title(":bar_chart: Finance Dashboard")
 # ================================= Title of the website ==========================================
-st.title("Cashflow Overview")
+
 # ================================= Header ========================================================
 st.write("""
 ### Analysis
@@ -146,10 +146,10 @@ exp_rev_percent_change = [100*(rev_count - exp_count) / rev_count
 fig = go.Figure(data=[
     go.Bar(name='Revenues', x=mon_year, y=rev_numbers, marker_color='darkgreen'),
     go.Bar(name='Expenditures', x=mon_year, y=exp_numbers, marker_color='crimson', 
-        text=[f"{percent_change:.0f}%" if percent_change < 0 
-              else f"+{percent_change:.0f}%"
+        text=[f"+{np.abs(percent_change):.0f}%" if percent_change < 0 
+              else f"-{np.abs(percent_change):.0f}%"
               for percent_change in exp_rev_percent_change ],
-        textposition='outside', textfont_size=18, textfont_color='darkgreen')
+        textposition='outside', textfont_size=18, textfont_color='red')
 ])
 
 # Change the bar mode
@@ -303,7 +303,7 @@ df_selection = lean_exp.query(
     "category == @Category & year == @Year & month ==@Month"
 )
 
-st.title("💶 Amount spent :")
+st.title("💶 Amount spent in €")
 st.markdown("###")
 
 # TOP KPI's
@@ -317,11 +317,11 @@ average_value_by_transaction = round(df_selection_exp['Amount'].mean(),2)
 
 left_column, middle_column, right_column = st.columns(3)
 with left_column:
-    st.subheader("Total Expenditures: "f"{round(total_expenditures,2)} EUR")
+    st.subheader("Total Expenditures: "f"{round(total_expenditures,2)} ")
 # with middle_column:
-#     st.subheader("Total Revenues: "f"{round(total_revenues,2)} EUR")
+#     st.subheader("Total Revenues: "f"{round(avg_revenue,2)} ")
 with right_column:
-    st.subheader("Avg Transaction Value: "f"{round(average_value_by_transaction,2)} EUR")
+    st.subheader("Avg Transaction Value: "f"{round(average_value_by_transaction,2)} ")
     st.markdown("""---""")
 
 # EXPENDITURES BY CATEGORY [BAR CHART]
@@ -351,7 +351,7 @@ fig_month_value = px.bar(
     x="Amount",
     y=exp_by_month.index,
     orientation="h",
-    title="<b>Expenditures by Year </b>",
+    title="<b>Expenditures by Month </b>",
     color_discrete_sequence=["crimson"] * len(exp_by_month),
     template="plotly_white",
 )
